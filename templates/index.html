@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block one %}
+<title>To Do List</title>
+<h1>To Do List</h1>
+{% endblock %}
+
+{% block two %}
+<div class = "content">
+    <form action="/" method="POST">
+        <text>title</text><br>
+        <input type="text" name="title" id="title"><br>
+        <text>detail</text><br>
+        <input type="text" name="detail" id="detail">
+        <input type="submit" value="Add to list"> 
+    </form>
+    <table>
+        <tr style="text-align: center">
+            <th>Title</th>
+            <th>Detail</th>
+            <th>Add</th>
+            <th>Action</th>
+        </tr>
+        {% for task in tasks %}
+        <tr >
+            <td>{{ task.title }}</td>
+            <td>{{ task.detail }}</td>
+            <td>{{task.date_created.date()}}</td>
+            <td>
+                <a href="/delete/{{task.id}}">
+                    Delete
+                </a>
+                <br>
+                <a href="/update/{{task.id}}">
+                    Update
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+
+    </table>
+</div>
+{% endblock %}
+
+
